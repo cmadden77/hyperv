@@ -15,7 +15,7 @@
       "STRGVNETPrefix": "10.0.0.0/16",
       "STRGVNETSubnet1Name": "VMHOST",
       "STRGVNETSubnet1Prefix": "10.0.0.0/24",
-      "HyperVHostName": "HYPERVHOST",
+      "HyperVHostName": "HYPERVHOST01",
       "HyperVHostAdminUserName": "adadmin",
       "HyperVHostImagePublisher": "MicrosoftWindowsServer",
       "HyperVHostImageOffer": "WindowsServer",
@@ -26,10 +26,10 @@
       "HyperVHostNicName": "[concat(variables('HyperVHostName'), '-NIC')]",
       "HyperVHost-PUBIPName": "[concat(variables('HyperVHostName'), '-PIP')]",
       "HyperVHostConfigArchiveFileName": "HyperVHostConfig.zip",
-      "HyperVHostConfigURL": "https://github.com/deltadan/AzureNestedHyperV/blob/master/customscripts/HyperVHostConfig.zip?raw=true",
+      "HyperVHostConfigURL": "https://github.com/cmadden77/hyperv/blob/master/nested/HyperVHostConfig.zip?raw=true",
       "HyperVHostInstallHyperVScriptFolder": ".",
       "HyperVHostInstallHyperVScriptFileName": "InstallHyperV.ps1",
-      "HyperVHostInstallHyperVURL": "https://raw.githubusercontent.com/deltadan/AzureNestedHyperV/master/customscripts/InstallHyperV.ps1"
+      "HyperVHostInstallHyperVURL": "https://raw.githubusercontent.com/cmadden77/hyperv/master/nested/InstallHyperV.ps1"
   
     },
     "resources": [
@@ -112,7 +112,8 @@
           "[resourceId('Microsoft.Network/networkInterfaces', variables('HyperVHostNicName'))]"
         ],
         "tags": {
-          "displayName": "HyperVHost"
+          "displayName": "[parameters('hypervHostDnsName')]",
+          "Owner": "cmadden@greenhousedata.com"
         },
         "properties": {
           "hardwareProfile": {
